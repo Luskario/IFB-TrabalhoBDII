@@ -8,10 +8,11 @@ dbconfig = {
     'password': '123456',
 }
 
-try:
-   conn = mysql.connector.connect(**dbconfig)
-   print("Conectado com sucesso")
-   mycursor = conn.cursor();
-except mysql.connector.Error as err:
-    print("Falha ao conectar")
+def DBConn():
 
+    try:
+        conn = mysql.connector.connect(**dbconfig)
+        print("Conectado com sucesso")
+        mycursor = conn.cursor();
+    except mysql.connector.Error as err:
+        print("Falha ao conectar")
