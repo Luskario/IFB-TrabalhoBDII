@@ -1,6 +1,8 @@
-from database.MysqlConnection import DBConn
+from warnings import catch_warnings
 import mysql.connector
+from mysql.connector import errorcode
+from view import menu
 
-teste = DBConn()
+menu.menuPrincipal()
 
-teste.execute("Select now()")
+
