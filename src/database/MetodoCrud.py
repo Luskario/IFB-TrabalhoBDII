@@ -2,23 +2,24 @@ from database.MysqlConnection import conn
 
 cursor = conn.cursor()
 
-def create(data):
+def create(sql):
     cursor = conn.cursor()
-    sql = "INSERT INTO %s VALUES (%s)"
+    
     try:
-        cursor.execute(sql, data)
+        cursor.execute(sql)
         conn.commit()
         print("Campo cadastrado com sucesso")
     except:
         print("Falha ao cadastrar")
     cursor.close()
+
     
 
 def read(data):
     cursor = conn.cursor()
-    sql = "SELECT * FROM %s"
+    sql = "SELECT * FROM %s" % data
     try:
-        cursor.execute(sql,data)
+        cursor.execute(sql)
         resultado = cursor.fetchall()
     except:
         print("Falha ao imprimir")
@@ -27,25 +28,31 @@ def read(data):
     cursor.close()
 
 
+
 def update(data):
     cursor = conn.cursor()
-    sql = "UPDATE %s SET %s = %s WHERE id = %s"
     try:
-        cursor.execute(sql, data)
+        cursor.execute(data)
         conn.commit()
         print("Campo atualizado com sucesso")
     except:
         print("Falha ao atualizar")
+    cursor.close()
+
 
 
 def delete(data):
     cursor = conn.cursor()
-    sql = "DELETE FROM %s WHERE id = %s"
+    sql = "DELETE FROM %s WHERE %s = %s" % data
     try:
-        cursor.execute(sql, data)
+        cursor.execute(sql)
         conn.commit()
-        print("Campo exluido com sucesso")
     except:
         print("ID não cadastrado")
+    if cursor.rowcount != 0:
+        print("Campo exluido com sucesso")
+    else:
+        print("ID não cadastrado")
     cursor.close()
+
     

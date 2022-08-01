@@ -9,10 +9,10 @@ time.sleep(0)
 
 menu.menuPrincipal()
 
-os.system('clear') or None
+#2os.system('clear') or None
 
-print("Muito obrigado volte sempre!")
+#print("Muito obrigado volte sempre!")
 
-time.sleep(2)
+#time.sleep(2)
 
-os.system('clear') or None
+#os.system('clear') or None

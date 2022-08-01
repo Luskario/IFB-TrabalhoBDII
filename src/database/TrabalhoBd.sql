@@ -39,11 +39,6 @@ Create Table Funcionario(
     primary key (cod_fun)
 );
 
-Create Table Aluguel(
-    cod_alu int not null,
-    primary key (cod_alu)
-);
-
 Create Table Extra(
     cod_ext int not null,
     preco_ext int not null,
