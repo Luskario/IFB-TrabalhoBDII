@@ -1,4 +1,4 @@
-from view.options import opMenuExtra, opMenuFuncionario, opMenuHistorico, opMenuPrincipal, opMenuClientes, opMenuEmpresas, opMenuFestas
+from view.options import opMenuExtras, opMenuFuncionarios, opMenuPrincipal, opMenuClientes, opMenuEmpresas, opMenuFestas, opMenuServicos
 import os
 
 def menuPrincipal():
@@ -11,7 +11,6 @@ def menuPrincipal():
         [3] Festas
         [4] Funcionários
         [5] Extras
-        [6] Histórico
         [0] sair!
         """
     )
@@ -32,7 +31,6 @@ def menuEmpresas():
     )
     op = int(input("> ") or "10")
     opMenuEmpresas(op)
-
 
 def menuClientes():
     os.system('clear') or None
@@ -58,13 +56,14 @@ def menuFestas():
         [2] Listar Festas
         [3] Atualizar Festa
         [4] Deletar Festa
+        [5] Serviços
         [0] voltar!
         """
     )
     op = int(input("> ") or "10")
     opMenuFestas(op)
 
-def menuFuncionario():
+def menuFuncionarios():
     os.system('clear') or None
     op = 10
     print(
@@ -77,9 +76,9 @@ def menuFuncionario():
         """
     )
     op = int(input("> ") or "10")
-    opMenuFuncionario(op)
+    opMenuFuncionarios(op)
 
-def menuExtra():
+def menuExtras():
     os.system('clear') or None
     op = 10
     print(
@@ -92,24 +91,7 @@ def menuExtra():
         """
     )
     op = int(input("> ") or "10")
-    opMenuExtra(op)
-
-def menuHistorico():
-    os.system('clear') or None
-    op = 10
-    print(
-        """
-        [1] Cadastrar Historico
-        [2] Listar Historico
-        [3] Atualizar Historico
-        [4] Deletar Historico
-        [0] voltar!
-        """
-    )
-    op = int(input("> ") or "10")
-    opMenuHistorico(op)
-
-
+    opMenuExtras(op)
 
 def menuAtualizar(colunas):
     os.system('clear') or None
@@ -123,3 +105,15 @@ def menuAtualizar(colunas):
     print("[0]  voltar!")   
     return i
     
+def menuServicos():
+    os.system('clear') or None
+    op = 10
+    print(
+        """
+        [1] Adicionar Serviço
+        [2] Remover Serviço
+        [0] voltar!
+        """
+    )
+    op = int(input("> ") or "10")
+    opMenuServicos(op)

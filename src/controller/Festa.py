@@ -11,11 +11,12 @@ def criar():
         input('tipo: '),
         input('nome: '),
         input('duração: '),
-        input('extra: ')
+        input('id cliente: '),
+        input('id empresa: '),
     )
     os.system('clear') or None
     
-    sql = "INSERT Festa VALUES (%s, %s, '%s', '%s', %s, '%s')" % data
+    sql = "INSERT Festa VALUES (%s, %s, '%s', '%s', %s, '%s', '%s')" % data
     
     create(sql)
     op = int(input('Presione ENTER para voltar')or 10)
@@ -29,8 +30,8 @@ def ler():
     menu.menuFestas()
 
 def atualizar():
-    colunas = ('nome_fes', 'preco_fes','tipo_fes', 'duracao_fes', 'Extra_fes')
-    colunasN = ('nome', 'preço', 'tipo', 'duração', 'extra')
+    colunas = ('nome_fes', 'preco_fes','tipo_fes', 'duracao_fes', 'cod_cli', 'cod_emp')
+    colunasN = ('nome', 'preço', 'tipo', 'duração', 'id cliente', 'id empresa')
     i = menu.menuAtualizar(colunasN)
     op = int(input("> ") or i+1)
     if op > i:
@@ -45,7 +46,7 @@ def atualizar():
             input('codigo:')
         )
 
-    if op == 2 or op == 4:
+    if op == 2 or op <= 4:
         sql = "UPDATE Festa SET %s = %s WHERE %s = %s" % data
     else:
         sql = "UPDATE Festa SET %s = '%s' WHERE %s = %s" % data
@@ -53,7 +54,6 @@ def atualizar():
     update(sql)
     op = int(input('Presione ENTER para voltar') or 10)
     menu.menuFestas()
-
 
 def deletar():
     os.system('clear') or None

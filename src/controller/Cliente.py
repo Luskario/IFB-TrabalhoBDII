@@ -9,14 +9,12 @@ def criar():
         input('id: '),
         input('nome: '),
         input('cpf: '),
-        input('login: '),
-        input('senha: '),
         input('telefone: '),
         input('endereco: ')
     )
     os.system('clear') or None
     
-    sql = "INSERT Cliente VALUES (%s, '%s', '%s', '%s', '%s', '%s', '%s')" % data
+    sql = "INSERT Cliente VALUES (%s, '%s', '%s', '%s', '%s')" % data
     
     create(sql)
     op = int(input('Presione ENTER para voltar')or 10)
@@ -30,8 +28,8 @@ def ler():
     menu.menuClientes()
 
 def atualizar():
-    colunas = ('nome_cli', 'cpf_cli','login_cli', 'senha_cli', 'telefone_cli', 'endereco')
-    colunasN = ('nome', 'cpf','login', 'senha', 'telefone', 'endereco')
+    colunas = ('nome_cli', 'cpf_cli', 'telefone_cli', 'endereco')
+    colunasN = ('nome', 'cpf', 'telefone', 'endereco')
     i = menu.menuAtualizar(colunasN)
     op = int(input("> ") or i+1)
     if op > i:

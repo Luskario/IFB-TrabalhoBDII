@@ -1,4 +1,4 @@
-from controller import Cliente, Empresa, Festa
+from controller import Cliente, Empresa, Festa, Extra, Funcionario, Servico
 from view import menu
 
 def opMenuPrincipal(op):
@@ -9,11 +9,9 @@ def opMenuPrincipal(op):
     elif op == 3:
         menu.menuFestas()
     elif op == 4:
-        menu.menuClientes()
+        menu.menuFuncionarios()
     elif op == 5:
-        menu.menuFuncionario()
-    elif op == 6:
-        menu.menuHistorico()
+        menu.menuExtras()
     elif op == 0:
         print("volte sempre")
     else:
@@ -56,49 +54,47 @@ def opMenuFestas(op):
         Festa.atualizar()
     elif op == 4:
         Festa.deletar()
+    elif op == 5:
+        menu.menuServicos()
     elif op == 0:
         menu.menuPrincipal()
     else:
         menu.menuFestas()
 
-def opMenuFuncionario(op):
+def opMenuFuncionarios(op):
     if op == 1:
-        print("f1")
-    elif op == 1:
-        print("f1")
-    elif op == 1:
-        print("f1")
-    elif op == 1:
-        print("f1")
-    elif op == 0:
-        menu.menuPrincipal()
-    else:
-        menu.menuFuncionario()
-
-def opMenuExtra(op):
-    if op == 1:
-        print("f1")
+        Funcionario.criar()
     elif op == 2:
-        print("f1")
+        Funcionario.ler()
     elif op == 3:
-        print("f1")
+        Funcionario.atualizar()
     elif op == 4:
-        print("f1")
+        Funcionario.deletar()
     elif op == 0:
         menu.menuPrincipal()
     else:
-        menu.menuExtra()
+        menu.menuFuncionarios()
 
-def opMenuHistorico(op):
+def opMenuExtras(op):
     if op == 1:
-        print("f1")
-    elif op == 1:
-        print("f1")
-    elif op == 1:
-        print("f1")
-    elif op == 1:
-        print("f1")
+        Extra.criar()
+    elif op == 2:
+        Extra.ler()
+    elif op == 3:
+        Extra.atualizar()
+    elif op == 4:
+        Extra.deletar()
     elif op == 0:
         menu.menuPrincipal()
     else:
-        menu.menuHistorico()
+        menu.menuExtras()
+
+def opMenuServicos(op):
+    if op == 1:
+        Servico.criar()
+    elif op == 2:
+        Servico.deletar()
+    elif op == 0:
+        menu.menuFestas()
+    else:
+        menu.menuServicos()
