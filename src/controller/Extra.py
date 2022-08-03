@@ -57,7 +57,12 @@ def atualizar():
 
 def deletar():
     os.system('clear') or None
-    data = ('Extra', 'cod_ext', input('codigo:'))
+    cod_ext = input('codigo:')
+    
+    data = ('Servico', 'cod_ext', cod_ext)
     delete(data)
+    data = ('Extra', 'cod_ext', cod_ext)
+    delete(data)
+
     op = int(input('Presione ENTER para voltar') or 10)
     menu.menuExtras()

@@ -1,7 +1,5 @@
 from database.MysqlConnection import conn
 
-cursor = conn.cursor()
-
 def create(sql):
     cursor = conn.cursor()
     
@@ -21,12 +19,12 @@ def read(data):
     try:
         cursor.execute(sql)
         resultado = cursor.fetchall()
+        for result in resultado:
+            print(result)
     except:
         print("Falha ao imprimir")
-    for result in resultado:
-        print(result)
+    
     cursor.close()
-
 
 
 def update(data):
