@@ -60,7 +60,7 @@ Create Table Servico(
 create function fn_Conta (a int)
 returns varchar(500) deterministic
 return(
-    select f.nome_fes as "Nome Da Festa", c.nome_cli as "Comprador" , sum(preco_ext) + preco_fes as Total
+    select sum(preco_ext) + preco_fes as Total
     from Festa f inner join Cliente c on f.cod_cli= c.cod_cli
     inner join Servico s on s.cod_fes = f.cod_fes
     inner join Extra e on e.cod_ext = s.cod_ext
@@ -81,7 +81,7 @@ create function fn_FestaRealizada (a int)
 returns varchar(500) deterministic
 return(
     select f.nome_fes as "Nome da Festa", c.nome_cli as "Nome do Cliente", e.nome_emp as "Nome da Empresa"
-    from Festa f inner join Cliente C on f.cod_cli = c.cod_cli
+    from Festa f inner join Cliente c on f.cod_cli = c.cod_cli
     inner join Empresa e on f.cod_emp= e.cod_emp
     where f.cod_fes = a
 );
