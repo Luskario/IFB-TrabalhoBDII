@@ -20,7 +20,7 @@ Create Table Funcionario(
     nome_fun varchar(30) not null,
     telefone_fun varchar(11),
     endereco_fun varchar(30),
-    disp_fun varchar(5),
+    disp_fun varchar(20),
     cod_emp int not null,
     equip_fun varchar(30),
     constraint foreign key (cod_emp) references Empresa(cod_emp)
@@ -30,7 +30,7 @@ Create Table Extra(
     cod_ext int not null primary key,
     nome_ext varchar(30),
     preco_ext int not null,
-    disp_ext varchar(5),
+    disp_ext varchar(20),
     hora_ext int,
     tipo_ext varchar(30)
 );
@@ -59,10 +59,29 @@ Create Table Servico(
 
 create function fn_Conta (a int)
 returns varchar(500) deterministic
-return
-(select f.nome_fes as "Nome Da Festa", c.nome_cli as "Comprador" , sum(preco_ext) + preco_fes as Total
-from Festa f inner join Cliente c on f.cod_cli= c.cod_cli
-inner join Servico s on s.cod_fes = f.cod_fes
-inner join Extra e on e.cod_ext = s.cod_ext
-where f.cod_fes = a
-group by f.cod_fes);
+return(
+    select f.nome_fes as "Nome Da Festa", c.nome_cli as "Comprador" , sum(preco_ext) + preco_fes as Total
+    from Festa f inner join Cliente c on f.cod_cli= c.cod_cli
+    inner join Servico s on s.cod_fes = f.cod_fes
+    inner join Extra e on e.cod_ext = s.cod_ext
+    where f.cod_fes = a
+    group by f.cod_fes
+);
+
+create function fn_ExtrasFesta (a int)
+returns varchar(500) deterministic
+return(
+    select e.nome_ext as "Tipo de Extra", e.cod_ext as "Código do Extra"
+    from Extra e inner join Servico s on e.cod_ext= s.cod_ext
+    inner join Festa f on f.cod_fes= s.cod_fes
+    where f.cod_fes = a
+);
+
+create function fn_FestaRealizada (a int)
+returns varchar(500) deterministic
+return(
+    select f.nome_fes as "Nome da Festa", c.nome_cli as "Nome do Cliente", e.nome_emp as "Nome da Empresa"
+    from Festa f inner join Cliente C on f.cod_cli = c.cod_cli
+    inner join Empresa e on f.cod_emp= e.cod_emp
+    where f.cod_fes = a
+);
