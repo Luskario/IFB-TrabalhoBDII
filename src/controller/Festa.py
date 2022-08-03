@@ -1,4 +1,6 @@
+from database.FuncoesBD import exe_read
 from database.MetodoCrud import create, read, update, delete
+from database.FuncoesBD import exe_post, exe_read
 from view import menu
 import os
 
@@ -17,7 +19,7 @@ def criar():
     )
     os.system('clear') or None
     
-    sql = "INSERT Festa VALUES (%s, %s, '%s', '%s', %s, '%s', '%s', '%s')" % data
+    sql = "INSERT Festa VALUES (%s, %s, '%s', '%s', '%s', %s, '%s', '%s')" % data
     
     create(sql)
     op = int(input('Presione ENTER para voltar')or 10)
@@ -47,7 +49,7 @@ def atualizar():
             input('codigo:')
         )
 
-    if op == 2 or op <= 4:
+    if op == 2 or op >= 4:
         sql = "UPDATE Festa SET %s = %s WHERE %s = %s" % data
     else:
         sql = "UPDATE Festa SET %s = '%s' WHERE %s = %s" % data
@@ -58,7 +60,33 @@ def atualizar():
 
 def deletar():
     os.system('clear') or None
-    data = ('Festa', 'cod_fes', input('codigo:'))
+    id_fes = input('codigo:')
+
+    data = ('Servico', 'cod_fes', id_fes)
     delete(data)
+    data = ('Festa', 'cod_fes', id_fes)
+    delete(data)
+    
     op = int(input('Presione ENTER para voltar') or 10)
     menu.menuFestas()
+
+#----------------------------------------------------------#
+
+def fun1():
+    os.system('clear') or None
+    sql = "SELECT fn_Conta(%s)" % input('id festa:')
+    os.system('clear') or None
+
+    exe_read(sql)
+
+    op = int(input('Presione ENTER para voltar') or 10)
+    menu.menuGerenciaFestas()
+
+
+def fun2():
+    os.system('clear') or None
+
+    print("Valor total da Festa:")
+
+    op = int(input('Presione ENTER para voltar') or 10)
+    menu.menuGerenciaFestas()

@@ -55,7 +55,7 @@ def opMenuFestas(op):
     elif op == 4:
         Festa.deletar()
     elif op == 5:
-        menu.menuServicos()
+        menu.menuGerenciaFestas()
     elif op == 0:
         menu.menuPrincipal()
     else:
@@ -94,7 +94,25 @@ def opMenuServicos(op):
         Servico.criar()
     elif op == 2:
         Servico.deletar()
+    elif op == 3:
+        Servico.fun1()
+    elif op == 0:
+        menu.menuGerenciaFestas()
+    else:
+        menu.menuServicos()
+
+def opMenuGerenciaFestas(op):
+    if op == 1:
+        Festa.fun1()
+    elif op == 2:
+        Festa.fun2()
+    elif op == 3:
+        menu.menuServicos()
+    elif op == 4:
+        print()
+    elif op == 5:
+        print()
     elif op == 0:
         menu.menuFestas()
     else:
-        menu.menuServicos()
+        menu.menuGerenciaFestas()

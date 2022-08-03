@@ -21,7 +21,17 @@ def criar():
 
 def deletar():
     os.system('clear') or None
-    data = ('Servico', 'cod_emp', input('codigo:'))
+    data = ('Servico', 'cod_fes', input('id festa:') +" AND cod_ext = " + input('id extra:'))
     delete(data)
+    op = int(input('Presione ENTER para voltar') or 10)
+    menu.menuServicos()
+
+#----------------------------------------------------------#
+ 
+def fun1():
+    os.system('clear') or None
+
+
+
     op = int(input('Presione ENTER para voltar') or 10)
     menu.menuServicos()

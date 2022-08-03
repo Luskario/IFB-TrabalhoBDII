@@ -1,4 +1,4 @@
-from view.options import opMenuExtras, opMenuFuncionarios, opMenuPrincipal, opMenuClientes, opMenuEmpresas, opMenuFestas, opMenuServicos
+from view.options import opMenuExtras, opMenuFuncionarios, opMenuPrincipal, opMenuClientes, opMenuEmpresas, opMenuFestas, opMenuServicos, opMenuGerenciaFestas
 import os
 
 def menuPrincipal():
@@ -11,6 +11,7 @@ def menuPrincipal():
         [3] Festas
         [4] Funcionários
         [5] Extras
+
         [0] sair!
         """
     )
@@ -26,6 +27,7 @@ def menuEmpresas():
         [2] Listar Empresas
         [3] Atualizar Empresa
         [4] Deletar Empresa
+
         [0] voltar!
         """
     )
@@ -41,6 +43,7 @@ def menuClientes():
         [2] Listar Clientes
         [3] Atualizar Cliente
         [4] Deletar Cliente
+
         [0] voltar!
         """
     )
@@ -56,7 +59,9 @@ def menuFestas():
         [2] Listar Festas
         [3] Atualizar Festa
         [4] Deletar Festa
-        [5] Serviços
+        
+        [5] Gerência Festas
+
         [0] voltar!
         """
     )
@@ -72,6 +77,7 @@ def menuFuncionarios():
         [2] Listar Funcionario
         [3] Atualizar Funcionario
         [4] Deletar Funcionario
+
         [0] voltar!
         """
     )
@@ -87,6 +93,7 @@ def menuExtras():
         [2] Listar Extra
         [3] Atualizar Extra
         [4] Deletar Extra
+
         [0] voltar!
         """
     )
@@ -102,6 +109,7 @@ def menuAtualizar(colunas):
         texto = "[%s]  " % i + x
         print(texto)
         i = i+1
+    print("")
     print("[0]  voltar!")   
     return i
     
@@ -112,8 +120,27 @@ def menuServicos():
         """
         [1] Adicionar Serviço
         [2] Remover Serviço
+        [3] Serviços Contratados
+        
         [0] voltar!
         """
     )
     op = int(input("> ") or "10")
     opMenuServicos(op)
+
+def menuGerenciaFestas():
+    os.system('clear') or None
+    op = 10
+    print(
+        """
+        [1] Festa Geral
+        [2] Conta Festa
+        [3] Serviços
+        [4] ...
+        [5] ...
+        
+        [0] voltar!
+        """
+    )
+    op = int(input("> ") or "10")
+    opMenuGerenciaFestas(op)
