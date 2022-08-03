@@ -15,7 +15,8 @@ def criar():
     )
     os.system('clear') or None
     
-    sql = "INSERT Funcionario VALUES (%s, '%s', '%s', '%s', '%s', '%s')" % data
+    sql = """INSERT Funcionario (cod_fun, nome_fun, telefone_fun, endereco_fun, cod_emp, equip_fun) 
+    VALUES (%s, '%s', '%s', '%s', '%s', '%s')""" % data
     
     create(sql)
     op = int(input('Presione ENTER para voltar')or 10)

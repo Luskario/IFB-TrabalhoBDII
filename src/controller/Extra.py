@@ -9,12 +9,13 @@ def criar():
         input('id: '),
         input('nome: '),
         input('preço: '),
+        'disp',
         input('carga horaria: '),
         input('tipo: ')
     )
     os.system('clear') or None
     
-    sql = "INSERT Extra VALUES (%s, '%s', '%s', '%s', '%s')" % data
+    sql = "INSERT Extra VALUES (%s, '%s', '%s', '%s', '%s', '%s')" % data
     
     create(sql)
     op = int(input('Presione ENTER para voltar')or 10)

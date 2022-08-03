@@ -10,13 +10,14 @@ def criar():
         input('preço: '),
         input('tipo: '),
         input('nome: '),
+        'nome',
         input('duração: '),
         input('id cliente: '),
         input('id empresa: '),
     )
     os.system('clear') or None
     
-    sql = "INSERT Festa VALUES (%s, %s, '%s', '%s', %s, '%s', '%s')" % data
+    sql = "INSERT Festa VALUES (%s, %s, '%s', '%s', %s, '%s', '%s', '%s')" % data
     
     create(sql)
     op = int(input('Presione ENTER para voltar')or 10)
