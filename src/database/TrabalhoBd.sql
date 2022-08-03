@@ -57,9 +57,12 @@ Create Table Servico(
 );
 
 
-create view Conta as
-select f.nome_fes as "Nome Da Festa", c.nome_cli as "Comprador" , sum(preco_ext) + preco_fes as Total
+create function fn_Conta (a int)
+returns varchar(500) deterministic
+return
+(select f.nome_fes as "Nome Da Festa", c.nome_cli as "Comprador" , sum(preco_ext) + preco_fes as Total
 from Festa f inner join Cliente c on f.cod_cli= c.cod_cli
 inner join Servico s on s.cod_fes = f.cod_fes
 inner join Extra e on e.cod_ext = s.cod_ext
-group by f.nome_fes, c.nome_cli;
+where f.cod_fes = a
+group by f.cod_fes);
