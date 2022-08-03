@@ -68,14 +68,19 @@ return(
     group by f.cod_fes
 );
 
-create function fn_ExtrasFesta (a int)
-returns varchar(500) deterministic
-return(
-    select e.nome_ext as "Tipo de Extra", e.cod_ext as "Código do Extra"
+delimiter $$
+create procedure pro_ExtrasFesta(inout a int)
+begin
+    select e.nome_ext as "Tipo de Extra"
     from Extra e inner join Servico s on e.cod_ext= s.cod_ext
     inner join Festa f on f.cod_fes= s.cod_fes
-    where f.cod_fes = a
-);
+    where f.cod_fes = a;
+    e.cod_ext as "Código do Extra"
+    from Extra e inner join Servico s on e.cod_ext= s.cod_ext
+    inner join Festa f on f.cod_fes= s.cod_fes
+    where f.cod_fes = a;
+end $$
+delimiter;
 
 create function fn_FestaRealizada (a int)
 returns varchar(500) deterministic
