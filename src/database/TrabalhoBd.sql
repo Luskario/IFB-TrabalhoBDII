@@ -75,18 +75,61 @@ begin
     from Extra e inner join Servico s on e.cod_ext= s.cod_ext
     inner join Festa f on f.cod_fes= s.cod_fes
     where f.cod_fes = a;
-    e.cod_ext as "Código do Extra"
+    select e.cod_ext as "Código do Extra"
     from Extra e inner join Servico s on e.cod_ext= s.cod_ext
     inner join Festa f on f.cod_fes= s.cod_fes
     where f.cod_fes = a;
 end $$
-delimiter;
+delimiter ;
 
-create function fn_FestaRealizada (a int)
-returns varchar(500) deterministic
-return(
-    select f.nome_fes as "Nome da Festa", c.nome_cli as "Nome do Cliente", e.nome_emp as "Nome da Empresa"
-    from Festa f inner join Cliente c on f.cod_cli = c.cod_cli
-    inner join Empresa e on f.cod_emp= e.cod_emp
-    where f.cod_fes = a
-);
+delimiter $$
+create procedure pro_FestaRealizada (in a int)
+begin
+    select f.nome_fes as "Nome da Festa"
+    from Festa f 
+    where f.cod_fes = a;
+    select c.nome_cli as "Nome do Cliente"
+    from Cliente c inner join Festa f on c.cod_cli= f.cod_cli
+    where f.cod_fes = a;
+    select e.nome_emp as "Nome da Empresa"
+    from Empresa e inner join Festa f on e.cod_emp= f.cod_emp
+    inner join Cliente c on c.cod_cli= f.cod_cli
+    where f.cod_fes = a;
+end $$
+delimiter ;
+
+delimiter $$
+create trigger tr_DisponibilidadeExtra after insert
+on Festa for each row
+begin
+    update Extra set disp_ext = "Indisponível"
+    where disp_ext = "Disponível";
+end $$
+delimiter ;
+
+delimiter $$
+create trigger tr_IndisponibilidadeExtra before delete
+on Festa for each row
+begin
+    update Extra set disp_ext = "Disponível"
+    where disp_ext = "Indisponível";
+end $$
+delimiter ;
+
+delimiter $$
+create trigger tr_DisponibilidadeFuncionario after insert
+on Festa for each row
+begin
+    update Funcionario set disp_fun = "Indisponível"
+    where disp_fun = "Disponível";
+end $$
+delimiter ;
+
+delimiter $$
+create trigger tr_IndisponibilidadeFuncionario before delete
+on Festa for each row
+begin
+    update Funcionario set disp_fun = "Disponível"
+    where disp_fun = "Indisponível";
+end $$
+delimiter ;
